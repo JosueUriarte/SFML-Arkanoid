@@ -2,6 +2,7 @@
 
 int main(int argc, char* argv[])
 {
+	//CREATE WINDOW
 	sf::RenderWindow window(sf::VideoMode(500, 500), "Test");
 	sf::Event e;
 
