@@ -2,7 +2,7 @@
 
 int main(int argc, char* argv[])
 {
-	sf::RenderWindow window(sf::VideoMode(800, 800), "Test");
+	sf::RenderWindow window(sf::VideoMode(500, 500), "Test");
 	sf::Event e;
 
 	while (window.isOpen())
