@@ -1,19 +1,21 @@
 #include <SFML/Graphics.hpp>
 
+#include <Game.hpp>
+
 int main(int argc, char* argv[])
 {
-	//CREATE WINDOW
-	sf::RenderWindow window(sf::VideoMode(500, 500), "Test");
-	sf::Event e;
-
-	while (window.isOpen())
+	// CREATE WINDOW ------------------
+	Game* game = new Game("ARKANOID");
+	
+	// GAME LOOP ---------------------
+	while (game->isRunning())
 	{
-		while (window.pollEvent(e))
-		{
-			if (e.type == sf::Event::Closed)
-				window.close();
-		}
+		game->update();
+		game->handleEvents();
+		game->render();
 	}
 
+	// EXIT OUT SAFELY
+	delete game;
 	return 0;
 }
