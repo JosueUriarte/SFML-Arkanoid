@@ -12,6 +12,7 @@ public:
 
 	// Game Objects
 	sf::RectangleShape player;
+	sf::CircleShape ball;
 
 	// Functions
 	void update();

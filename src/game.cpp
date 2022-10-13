@@ -16,10 +16,17 @@ Game::Game(char* title)
 	this->player.setOrigin(50.0f, 5.0f);
 	this->player.setPosition(250.0f, 480.0f);
 	this->player.setFillColor(sf::Color::Magenta);
+
+	// INIT THE BALL
+	this->ball.setRadius(5.0f);
+	this->ball.setPosition(250.0f, 250.0f);
+	this->ball.setFillColor(sf::Color::White);
 }
 
 Game::~Game()
 {
+	delete &this->player;
+	delete &this->ball;
 	delete this->window;
 }
 
@@ -40,11 +47,15 @@ void Game::handleEvents()
 
 void Game::update()
 {
-	if (sf::Mouse::getPosition(*this->window).x > 0 && sf::Mouse::getPosition(*this->window).x < 500)
-	{
-			this->player.setPosition(sf::Mouse::getPosition(*this->window).x, this->player.getPosition().y);
-	}
-		
+	// MOVE PADDLE WITH MOUSE
+	this->player.setPosition(sf::Mouse::getPosition(*this->window).x, this->player.getPosition().y);
+
+	// COLLISION DETECTION
+	sf::FloatRect playerBounds = this->player.getGlobalBounds();
+	if (playerBounds.left <= 0.0f)
+		this->player.setPosition(0.0f + 50.0f, this->player.getPosition().y);
+	else if(playerBounds.left + playerBounds.width >= this->window->getSize().x)
+		this->player.setPosition(this->window->getSize().x - 50.0f, this->player.getPosition().y);
 
 	std::cout << "MOUSE POS: " << sf::Mouse::getPosition(*this->window).x 
 						<< " " << sf::Mouse::getPosition(*this->window).y << std::endl;
@@ -56,6 +67,7 @@ void Game::render()
 
 	//DRAW GAMEOBJECTS
 	this->window->draw(this->player);
+	this->window->draw(this->ball);
 
 	this->window->display();
 }
