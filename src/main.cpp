@@ -21,5 +21,5 @@ int main(int argc, char* argv[])
 
 	// EXIT OUT SAFELY
 	delete game;
-	return 0;
+	return EXIT_SUCCESS;
 }

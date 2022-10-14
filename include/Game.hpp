@@ -13,7 +13,7 @@ public:
 	// Game Objects
 	sf::RectangleShape player;
 	sf::CircleShape ball;
-	std::vector<sf::RectangleShape*> blocks;
+	sf::RectangleShape blocks[100];
 
 	// Functions
 	void update();
@@ -24,7 +24,8 @@ public:
 	bool isRunning() { return window->isOpen(); }
 
 private:
-	float dx = 6.0f, dy = 5.0f;
+	int iblocks = 0;
+	float dx = 2.0f, dy = 4.0f;
 	sf::RenderWindow* window = nullptr;
 	sf::VideoMode v_mode;
 	sf::Event ev;
